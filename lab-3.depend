@@ -1,0 +1,67 @@
+# depslib dependency file v1.0
+1588928182 source:c:\users\顯闉\desktop\part1\part1\histogram.cpp
+	"histogram.h"
+	<string>
+	<vector>
+	<iostream>
+
+1588927830 c:\users\顯闉\desktop\part1\part1\histogram.h
+	<vector>
+	<string>
+
+1588928891 source:c:\users\顯闉\desktop\part1\part1\svg.cpp
+	<iostream>
+	"svg.h"
+
+1588939540 c:\users\顯闉\desktop\part1\part1\svg.h
+	<string>
+	<vector>
+
+1588939405 source:c:\users\顯闉\desktop\part1\part1\main.cpp
+	<iostream>
+	<vector>
+	"histogram.h"
+	"svg.h"
+	<curl/curl.h>
+	<sstream>
+	<string>
+
+1588934062 c:\users\顯闉\desktop\part1\part1\curl\include\curl\curl.h
+	"curlver.h"
+	"system.h"
+	<stdio.h>
+	<limits.h>
+	<osreldate.h>
+	<sys/types.h>
+	<time.h>
+	<winsock2.h>
+	<ws2tcpip.h>
+	<sys/select.h>
+	<sys/socket.h>
+	<sys/time.h>
+	<support/SupportDefs.h>
+	"easy.h"
+	"multi.h"
+	"urlapi.h"
+	"typecheck-gcc.h"
+
+1588934062 c:\users\顯闉\desktop\part1\part1\curl\include\curl\curlver.h
+
+1588934063 c:\users\顯闉\desktop\part1\part1\curl\include\curl\system.h
+	<winsock2.h>
+	<windows.h>
+	<ws2tcpip.h>
+	<sys/types.h>
+	<sys/socket.h>
+	<sys/poll.h>
+
+1588934062 c:\users\顯闉\desktop\part1\part1\curl\include\curl\easy.h
+
+1588934063 c:\users\顯闉\desktop\part1\part1\curl\include\curl\multi.h
+	"curl.h"
+
+1588934064 c:\users\顯闉\desktop\part1\part1\curl\include\curl\urlapi.h
+	"curl.h"
+
+1588934063 c:\users\顯闉\desktop\part1\part1\curl\include\curl\typecheck-gcc.h
+
