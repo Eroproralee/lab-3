@@ -6,7 +6,7 @@
 using namespace std;
 struct Input
 {vector<double>numbers;
-size_t bin_count;
+size_t bin_count    ;
 };
 vector<double> input_numbers(istream&in,size_t count)
 {
