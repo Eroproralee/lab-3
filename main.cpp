@@ -2,6 +2,7 @@
 #include <vector>
 #include "histogram.h"
 #include "svg.h"
+  #include <curl/curl.h>
 
 using namespace std;
 struct Input
@@ -58,6 +59,7 @@ Input read_input(istream& in,bool prompt)
  }
 int main()
 {
+    curl_global_init(CURL_GLOBAL_ALL);
     double length_ch,length_pr;
 
     const auto Input=read_input(cin,true);
