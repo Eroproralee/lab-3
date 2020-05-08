@@ -2,11 +2,11 @@
 #include <vector>
 #include "histogram.h"
 #include "svg.h"
-
+#include <curl/curl.h>
 using namespace std;
 struct Input
 {vector<double>numbers;
-size_t bin_count    ;
+size_t bin_count;
 };
 vector<double> input_numbers(istream&in,size_t count)
 {
@@ -42,13 +42,13 @@ Input read_input(istream& in,bool prompt)
  }
  size_t number_count;
  cin >> number_count;
- if(prompt==true)
+ if(prompt==1)
  {
      cerr <<"Enter numbers:";
  }
  data.numbers = input_numbers(in,number_count);
  size_t bin_count;
- if(prompt==true)
+ if(prompt==1)
  {
   cerr <<"Enter bin_count";
  }
@@ -56,12 +56,23 @@ Input read_input(istream& in,bool prompt)
  data.bin_count=bin_count;
  return data;
  }
-int main()
-{
-    double length_ch,length_pr;
-
+int main(int argc,char*argv[])
+{   if(argc>1)
+    {   CURL* curl =curl_easy_init();
+        CURLcode res;
+        curl_easy_setopt(curl, CURLOPT_URL, argv[1]);
+        if(CURLE_OK==1)
+        {
+            cout<<curl_easy_strerror(curl_easy_perform(curl));
+            exit(1);
+        }
+        res = curl_easy_perform(curl);
+        curl_easy_cleanup(curl);
+     return 0;
+    }
+    curl_global_init(CURL_GLOBAL_ALL);
     const auto Input=read_input(cin,true);
     const auto bins =make_histogram(Input);
- show_histogram_svg(bins );
+    show_histogram_svg(bins);
     return 0;
 }
