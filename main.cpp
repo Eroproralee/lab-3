@@ -4,6 +4,10 @@
 #include "svg.h"
 
 using namespace std;
+struct Input
+{vector<double>numbers;
+size_t bin_count;
+};
 vector<double> input_numbers(istream&in,size_t count)
 {
     vector<double> result(count);
@@ -14,14 +18,14 @@ vector<double> input_numbers(istream&in,size_t count)
     return result;
 }
 
-vector<size_t> make_histogram(size_t count,const vector<double>& numbers)
+vector<size_t> make_histogram(struct Input Input)
 {   double min=0;
     double max=0;
-    find_minmax(numbers,min,max);
-    vector<size_t> bins(count);
-    for (double number : numbers) {
-        size_t bin = (size_t)((number - min) / (max - min) * count);
-        if (bin == count)
+    find_minmax(Input,min,max);
+    vector<size_t> bins(Input.bin_count);
+    for (double number : Input.numbers) {
+        size_t bin = (size_t)((number - min) / (max - min) * Input.bin_count);
+        if (bin == Input.bin_count)
         {
             bin--;
         }
@@ -29,29 +33,35 @@ vector<size_t> make_histogram(size_t count,const vector<double>& numbers)
     }
     return bins;
 }
-struct Input
-{vector<double>numbers;
-size_t bin_count;
-};
-Input read_input(istream& in)
+Input read_input(istream& in,bool prompt)
 {
  Input data;
- cerr << "Enter number count: ";
+ if(prompt==1)
+ {
+     cerr << "Enter number count: ";
+ }
  size_t number_count;
  cin >> number_count;
- cerr <<"Enter numbers:";
+ if(prompt==1)
+ {
+     cerr <<"Enter numbers:";
+ }
  data.numbers = input_numbers(in,number_count);
  size_t bin_count;
- cin >>data.bin_count;
+ if(prompt==1)
+ {
+  cerr <<"Enter bin_count";
+ }
+ cin>>bin_count;
+ data.bin_count=bin_count;
  return data;
  }
 int main()
 {
     double length_ch,length_pr;
-    Input data;
-    data=read_input(cin);
-    const auto bins =make_histogram(data.bin_count,data.numbers);
 
-    show_histogram_svg(bins,data.bin_count,length_ch,length_pr);
+    const auto Input=read_input(cin,true);
+    const auto bins =make_histogram(Input);
+ show_histogram_svg(bins,Input.bin_count,length_ch,length_pr);
     return 0;
 }
