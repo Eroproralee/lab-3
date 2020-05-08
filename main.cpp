@@ -42,13 +42,13 @@ Input read_input(istream& in,bool prompt)
  }
  size_t number_count;
  cin >> number_count;
- if(prompt==1)
+ if(prompt==true)
  {
      cerr <<"Enter numbers:";
  }
  data.numbers = input_numbers(in,number_count);
  size_t bin_count;
- if(prompt==1)
+ if(prompt==true)
  {
   cerr <<"Enter bin_count";
  }
@@ -62,6 +62,6 @@ int main()
 
     const auto Input=read_input(cin,true);
     const auto bins =make_histogram(Input);
- show_histogram_svg(bins,Input.bin_count,length_ch,length_pr);
+ show_histogram_svg(bins );
     return 0;
 }
