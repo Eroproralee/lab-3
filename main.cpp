@@ -2,7 +2,12 @@
 #include <vector>
 #include "histogram.h"
 #include "svg.h"
+<<<<<<< HEAD
 #include <curl/curl.h>
+=======
+  #include <curl/curl.h>
+
+>>>>>>> eaff7f2ca8651d5694368986d1848d166f91dcb5
 using namespace std;
 struct Input
 {vector<double>numbers;
@@ -56,6 +61,7 @@ Input read_input(istream& in,bool prompt)
  data.bin_count=bin_count;
  return data;
  }
+<<<<<<< HEAD
 int main(int argc,char*argv[])
 {   if(argc>1)
     {   CURL* curl =curl_easy_init();
@@ -71,6 +77,13 @@ int main(int argc,char*argv[])
      return 0;
     }
     curl_global_init(CURL_GLOBAL_ALL);
+=======
+int main()
+{
+    curl_global_init(CURL_GLOBAL_ALL);
+    double length_ch,length_pr;
+
+>>>>>>> eaff7f2ca8651d5694368986d1848d166f91dcb5
     const auto Input=read_input(cin,true);
     const auto bins =make_histogram(Input);
     show_histogram_svg(bins);
