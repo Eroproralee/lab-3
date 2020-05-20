@@ -29,7 +29,7 @@ void svg_line(double x1,double y1,double x2,double y2,double length_ch,double le
 {
     cout << "<line x1='"<<x1<<"' y1='"<<y1<<"' x2='"<<x2<<"' y2='"<<y2<<"' stroke='"<<stroke_1<<"' stroke-dasharray='"<<10<<" "<<10<<"' />";
 }
-void show_histogram_svg(const vector<size_t>& bins,size_t bin_count,double length_ch,double length_pr)
+void show_histogram_svg(const vector<size_t>& bins)
 {
     size_t lenght = 0 ;
     const auto IMAGE_WIDTH = 400;
@@ -38,7 +38,7 @@ void show_histogram_svg(const vector<size_t>& bins,size_t bin_count,double lengt
     const auto TEXT_BASELINE = 20;
     const auto TEXT_WIDTH = 50;
     const auto BIN_HEIGHT = 30;
-    const auto BLOCK_WIDTH = 10;
+    const auto BLOCK_WIDTH = 10           ;
     const size_t SCREEN_WIDTH = 80;
     const size_t MAX_ASTERISK = SCREEN_WIDTH - 4 - 1;
     double top = 0;
@@ -75,11 +75,7 @@ void show_histogram_svg(const vector<size_t>& bins,size_t bin_count,double lengt
 
 
         }
-        svg_line(BLOCK_WIDTH,top  ,TEXT_WIDTH+lenght+5,top  ,length_ch,length_pr,"red");
-svg_line(BLOCK_WIDTH ,0 ,BLOCK_WIDTH ,top ,length_ch,length_pr,"red");
-// левая часть
-      svg_line(TEXT_WIDTH+lenght+5,0 ,TEXT_WIDTH+lenght+5 ,top ,length_ch,length_pr,"red");
-      //
- svg_line(BLOCK_WIDTH,0,TEXT_WIDTH+lenght+5,0,length_ch,length_pr,"red");
+
         svg_end();
     }
+
