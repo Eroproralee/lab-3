@@ -8,6 +8,16 @@
 #include <sstream>
 #include <string>
 using namespace std;
+string
+make_info_text() {
+    stringstream buffer;
+    string Windows = "Windows v6.3" ;
+    string name = "Egor" ;
+    buffer << "versin " << Windows ;
+    buffer << "name " << name ;
+    // TODO: получить имя компьютера, записать в буфер.
+    return buffer.str();
+}
 struct Input {
     vector<double> numbers;
     size_t bin_count;
@@ -46,8 +56,7 @@ cerr << "Enter bin_count : " ;
 }
 size_t number_count;
 cin >> number_count;
-cerr <<"Enter numbers:";
-data.numbers = input_numbers(in,number_count);
+data.numbers = input_numbers(cin,number_count);
 size_t bin_count;
 cin >>data.bin_count;
 return data;
@@ -101,8 +110,9 @@ main(int argc, char* argv[])
      input=read_input(cin,true);
     }
     curl_global_init(CURL_GLOBAL_ALL);
+    double length_pr , length_ch ;
 const auto data=read_input(cin, true);
 const auto bins =make_histogram(data);
-show_histogram_svg(bins);
+show_histogram_svg(bins , length_pr , length_ch );
 return 0;
 }
