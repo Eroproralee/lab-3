@@ -8,8 +8,6 @@
 #include <sstream>
 #include <string>
 using namespace std;
-int printf(const char* format, ...);
-
 string
 make_info_text() {
     stringstream buffer;
@@ -102,13 +100,7 @@ Input download(const string& address)
 
 int
 main(int argc, char* argv[])
-{
-    const char* name = "Commander Shepard";
-int year = 2154;
-printf("%s was born in %d.\n", name, year);
-printf("n = %08x\n", 0x1234567);
-return 0 ;
-Input input;
+{   Input input;
     if(argc>1)
     {
      input = download(argv[1]);
