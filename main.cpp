@@ -9,6 +9,13 @@
 #include <stdio.h>
 
 using namespace std;
+string
+make_info_text( DWORD version_major , DWORD version_minor , DWORD build ) {
+stringstream buffer;
+
+buffer << "Windows v" << version_major << "." << version_minor <<" " << "build(" << build << ")" ;
+return buffer.str();
+}
 struct Input {
     vector<double> numbers;
     size_t bin_count;
@@ -73,38 +80,31 @@ write_data(void* items, size_t item_size, size_t item_count, void* ctx)
     buffer->write(new_items, data_size);
     return data_size;
 }
-Input
-download(const string& address)
-{
-    stringstream buffer;
-
-    curl_global_init(CURL_GLOBAL_ALL);
-
-    CURL *curl = curl_easy_init();
-    if(curl)
-    {
+ Input download(const string& address)
+ {
+     stringstream buffer;
+     curl_off_t speed;
+     CURL* curl =curl_easy_init();
         CURLcode res;
+        CURLcode downl;
+        curl_easy_setopt(curl, CURLOPT_URL, address.c_str());
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_data);
         curl_easy_setopt(curl, CURLOPT_WRITEDATA, &buffer);
-        curl_easy_setopt(curl, CURLOPT_URL, address.c_str());
-
-        /* Perform the request */
         res = curl_easy_perform(curl);
-
-        if(!res)
+        downl= curl_easy_getinfo(curl,CURLINFO_SPEED_DOWNLOAD_T,speed);
+        if(res!=CURLE_OK)
         {
-            /* check the size */
-            double dl;
-            res = curl_easy_getinfo(curl, CURLINFO_SIZE_DOWNLOAD, &dl);
-            if(!res)
-            {
-                cerr << "Downloaded:"<<dl<<"bytes\n";
-            }
+            cout<<curl_easy_strerror(res)<<endl;
+            cerr<<"Download speed %"<<speed<<"bytes/sec\n";
+            exit(1);
         }
-    }
-}
+        curl_easy_cleanup(curl);
+     return read_input(buffer,false);
+ }
     int main(int argc, char* argv[])
     {
+
+
         Input input ;
          if(argc>1)
     {
@@ -118,6 +118,6 @@ download(const string& address)
         double length_ch,length_pr;
     const auto bins = make_histogram(input);
 
-        show_histogram_svg(bins,length_ch,length_pr);
+        show_histogram_svg(bins,length_ch,length_pr );
         return 0;
     }
