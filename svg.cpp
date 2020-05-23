@@ -38,8 +38,7 @@ GetComputerName(Computername,&memory);
 //printf("Computer name : %s", Computername);
 const auto TEXT_LEFT = 20;
 int X=TEXT_LEFT ;
-    buffer << "Windows v" << version_major << "." << version_minor << " (build " << build << ")  "<<'\n' ;
-    buffer << "Computer Name:" <<  Computername;
+    buffer << "Windows v" << version_major << "." << version_minor << " (build " << build << ")  "<<'\n' << "Computer Name:" <<  Computername ;
 return buffer.str();
 }
 
@@ -131,7 +130,6 @@ svg_line(BLOCK_WIDTH,0,TEXT_WIDTH+lenght+5,0,length_ch,length_pr,"red");
 
 string buffer;
     buffer=make_info_text(top);
-    cout <<endl;
     svg_text_histogram(buffer,top,TEXT_LEFT);
     svg_end();
 
