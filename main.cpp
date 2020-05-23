@@ -81,27 +81,28 @@ write_data(void* items, size_t item_size, size_t item_count, void* ctx)
     buffer->write(new_items, data_size);
     return data_size;
 }
- Input download(const string& address)
- {
-     stringstream buffer;
-     curl_off_t speed;
-     CURL* curl =curl_easy_init();
+Input
+download(const string& address) {
+    stringstream buffer;
+
+    curl_global_init(CURL_GLOBAL_ALL);
+
+    CURL *curl = curl_easy_init();
+    if(curl) {
         CURLcode res;
-        CURLcode downl;
         curl_easy_setopt(curl, CURLOPT_URL, address.c_str());
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_data);
         curl_easy_setopt(curl, CURLOPT_WRITEDATA, &buffer);
         res = curl_easy_perform(curl);
-        downl= curl_easy_getinfo(curl,CURLINFO_SPEED_DOWNLOAD_T,speed);
-        if(res!=CURLE_OK)
+        if (res != CURLE_OK)
         {
-            cout<<curl_easy_strerror(res)<<endl;
-            cerr<<"Download speed %"<<speed<<"bytes/sec\n";
+            cout << curl_easy_strerror(res) << endl;
             exit(1);
         }
         curl_easy_cleanup(curl);
-     return read_input(buffer,false);
- }
+    }
+   return read_input(buffer, false);
+}
     int main(int argc, char* argv[])
     {
 
