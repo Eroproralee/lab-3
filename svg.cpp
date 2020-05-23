@@ -38,6 +38,7 @@ GetComputerName(Computername,&memory);
 //printf("Computer name : %s", Computername);
 const auto TEXT_LEFT = 20;
 int X=TEXT_LEFT ;
+// вывод на экрна версии и имени
     buffer << "Windows v" << version_major << "." << version_minor << " (build " << build << ")  "<<'\n' << "Computer Name:" <<  Computername ;
 return buffer.str();
 }
@@ -123,9 +124,7 @@ void show_histogram_svg(const vector<size_t>& bins  ,  double length_ch , double
         }
 svg_line(BLOCK_WIDTH,top ,TEXT_WIDTH+lenght+5,top ,length_ch,length_pr,"red");
 svg_line(BLOCK_WIDTH ,0 ,BLOCK_WIDTH ,top ,length_ch,length_pr,"red");
-// ëåâàÿ ÷àñòü
 svg_line(TEXT_WIDTH+lenght+5,0 ,TEXT_WIDTH+lenght+5 ,top ,length_ch,length_pr,"red");
-//
 svg_line(BLOCK_WIDTH,0,TEXT_WIDTH+lenght+5,0,length_ch,length_pr,"red");
 
 string buffer;
@@ -162,9 +161,7 @@ string buffer;
 
 svg_line(BLOCK_WIDTH,top ,TEXT_WIDTH+lenght+5,top ,length_ch,length_pr,"red");
 svg_line(BLOCK_WIDTH ,0 ,BLOCK_WIDTH ,top ,length_ch,length_pr,"red");
-// ëåâàÿ ÷àñòü
 svg_line(TEXT_WIDTH+lenght+5,0 ,TEXT_WIDTH+lenght+5 ,top ,length_ch,length_pr,"red");
-//
 svg_line(BLOCK_WIDTH,0,TEXT_WIDTH+lenght+5,0,length_ch,length_pr,"red");
     }
 svg_text(TEXT_LEFT , top+30 , make_info_text(top)  ) ;
