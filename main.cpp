@@ -9,7 +9,6 @@
 #include <stdio.h>
 
 using namespace std;
-// начало лабы 4.2
 string
 make_info_text( DWORD version_major , DWORD version_minor , DWORD build ) {
 stringstream buffer;
