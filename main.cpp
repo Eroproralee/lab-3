@@ -106,7 +106,7 @@ write_data(void* items, size_t item_size, size_t item_count, void* ctx)
 
 
         Input input ;
-         if(argc>1)
+         if( argc > 1)
     {
         input = download(argv[1]);
     }
