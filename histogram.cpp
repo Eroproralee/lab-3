@@ -1,3 +1,4 @@
+#include "histogram.h"
 #include <string>
 #include <vector>
 #include <iostream>
@@ -6,18 +7,18 @@ struct Input
 {vector<double>numbers;
 size_t bin_count;
 };
-void find_minmax(struct Input data , double& min, double& max)
+void find_minmax(struct Input input, double& min, double& max)
     {
-    if (data.numbers.size()==0)
+    if (input.numbers.size()==0)
     {
         return;
     }
     else
     {
 
-    min = data.numbers[0];
-    max = data.numbers[0];
-    for (double number : data.numbers)
+    min = input.numbers[0];
+    max = input.numbers[0];
+    for (double number : input.numbers)
         {
         if (number < min)
             {
