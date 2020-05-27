@@ -4,6 +4,20 @@
 #include <stdio.h>
 #include <sstream>
 using namespace std;
+void svg_begin(double width, double height)
+{
+    cout << "<?xml version='1.0' encoding='UTF-8'?>\n";
+    cout << "<svg ";
+    cout << "width='" << width << "' ";
+    cout << "height='" << height << "' ";
+    cout << "viewBox='0 0 " << width << " " << height << "' ";
+    cout << "xmlns='http://www.w3.org/2000/svg'>\n";
+}
+void svg_end()
+{
+    cout << "</svg>\n";
+}
+
 string make_info_text( double top  ) {
 
 stringstream buffer;
@@ -48,20 +62,6 @@ void svg_text_histogram(string buffer,double top,double left)
 {
 
  cout<<"'>"<<buffer <<  "<text x='" << left << "' y='"<<top+10<<"'>";
-}
-void svg_begin(double width, double height)
-{
-    cout << "<?xml version='1.0' encoding='UTF-8'?>\n";
-    cout << "<svg ";
-    cout << "width='" << width << "' ";
-    cout << "height='" << height << "' ";
-    cout << "viewBox='0 0 " << width << " " << height << "' ";
-    cout << "xmlns='http://www.w3.org/2000/svg'>\n";
-}
-void svg_end()
-{
-    cout << "</svg>\n";
-
 }
 void svg_text(double left, double baseline, string text)
 {
@@ -128,11 +128,13 @@ svg_line(BLOCK_WIDTH,top ,TEXT_WIDTH+lenght+5,top ,length_ch,length_pr,"red");
 svg_line(BLOCK_WIDTH ,0 ,BLOCK_WIDTH ,top ,length_ch,length_pr,"red");
 svg_line(TEXT_WIDTH+lenght+5,0 ,TEXT_WIDTH+lenght+5 ,top ,length_ch,length_pr,"red");
 svg_line(BLOCK_WIDTH,0,TEXT_WIDTH+lenght+5,0,length_ch,length_pr,"red");
-
+svg_text(TEXT_LEFT , top+30 , make_info_text(top)  ) ;
 string buffer;
     buffer=make_info_text(top);
+    cout <<endl;
     svg_text_histogram(buffer,top,TEXT_LEFT);
     svg_end();
+
 
 
     svg_end();
@@ -166,13 +168,14 @@ svg_line(BLOCK_WIDTH,top ,TEXT_WIDTH+lenght+5,top ,length_ch,length_pr,"red");
 svg_line(BLOCK_WIDTH ,0 ,BLOCK_WIDTH ,top ,length_ch,length_pr,"red");
 svg_line(TEXT_WIDTH+lenght+5,0 ,TEXT_WIDTH+lenght+5 ,top ,length_ch,length_pr,"red");
 svg_line(BLOCK_WIDTH,0,TEXT_WIDTH+lenght+5,0,length_ch,length_pr,"red");
-    }
 svg_text(TEXT_LEFT , top+30 , make_info_text(top)  ) ;
 string buffer;
     buffer=make_info_text(top);
     cout <<endl;
     svg_text_histogram(buffer,top,TEXT_LEFT);
     svg_end();
+
+    }
 
 }
 
