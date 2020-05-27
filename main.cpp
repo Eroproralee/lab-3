@@ -9,11 +9,12 @@
 #include <stdio.h>
 
 using namespace std;
+
 string
 make_info_text( DWORD version_major , DWORD version_minor , DWORD build ) {
 stringstream buffer;
 
-buffer << "Windows v" << version_major << "." << version_minor <<" " << "build(" << build << ")" ;
+
 return buffer.str();
 }
 struct Input {
@@ -32,6 +33,7 @@ input_numbers(istream& in, size_t count) {
 
 Input
 read_input(istream& in , bool prompt ) {
+
     Input data;
 if ( prompt == true ){
     cerr << "Enter number count: ";
@@ -93,20 +95,35 @@ download(const string& address) {
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_data);
         curl_easy_setopt(curl, CURLOPT_WRITEDATA, &buffer);
         res = curl_easy_perform(curl);
-        if (res != CURLE_OK)
+        if (res)
         {
             cout << curl_easy_strerror(res) << endl;
             exit(1);
         }
-        curl_easy_cleanup(curl);
     }
+   curl_easy_cleanup(curl);
    return read_input(buffer, false);
 }
+
     int main(int argc, char* argv[])
     {
 
+        Input input   ;
+           curl_global_init(CURL_GLOBAL_ALL);
+    CURL *curl = curl_easy_init();
 
-        Input input ;
+curl_version_info_data* data = curl_version_info(CURLVERSION_NOW);
+bool flag = true ;
+int i =0 ;
+while (data->protocols[i] !=0  )
+{
+cerr << data->protocols[i] <<endl ;
+
+i=i+1;
+
+}
+
+
          if( argc > 1)
     {
         input = download(argv[1]);
