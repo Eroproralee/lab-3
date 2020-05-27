@@ -39,14 +39,14 @@ if ( prompt == true ){
     cerr << "Enter number count: ";
 }
     size_t number_count;
-    cin >> number_count;
+    in >> number_count;
 
    if ( prompt == true ){ cerr << "Enter numbers: ";
    }
     data.numbers = input_numbers(in, number_count);
  cerr << "Enter bin ncount: ";
     size_t bin_count;
-    cin >> bin_count;
+    in >> bin_count;
     data.bin_count = bin_count  ;
 
     return data;
